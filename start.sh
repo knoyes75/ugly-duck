@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+export PLAYWRIGHT_BROWSERS_PATH="$HOME/.playwright"
 
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 BACKEND="$ROOT/backend"
@@ -13,7 +14,7 @@ if [ ! -d "$BACKEND/.venv" ]; then
   cd "$BACKEND"
   python3 -m venv .venv
   .venv/bin/pip install -q -r requirements.txt
-  .venv/bin/playwright install chromium --with-deps
+  PLAYWRIGHT_BROWSERS_PATH="$HOME/.playwright" .venv/bin/playwright install chromium
 fi
 
 # Install frontend deps if needed

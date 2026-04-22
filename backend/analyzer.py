@@ -5,6 +5,9 @@ import os
 import httpx
 from pathlib import Path
 
+# Allow Playwright to find browsers installed without sudo
+os.environ.setdefault("PLAYWRIGHT_BROWSERS_PATH", str(Path.home() / ".playwright"))
+
 OPENROUTER_KEY = os.environ["OPENROUTER_API_KEY"]
 VISION_MODEL   = "google/gemini-2.0-flash-exp:free"
 SCREENSHOTS_DIR = Path(__file__).parent.parent / "screenshots"
